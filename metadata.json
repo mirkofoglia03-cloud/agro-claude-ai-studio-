@@ -1,0 +1,7 @@
+{
+  "name": "AgroIO Dashboard Preview",
+  "description": "A comprehensive dashboard for managing a vegetable garden, including tasks, weather, design, and community features. This is a preview generated based on user-provided code.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
