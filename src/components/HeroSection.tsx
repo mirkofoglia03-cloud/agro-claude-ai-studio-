@@ -17,7 +17,7 @@ const HeroSection: React.FC = (): JSX.Element => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="fade-in-up">
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-agro-green mb-6 leading-tight">
             Il Futuro dell'Agricoltura<br />
             <span className="text-agro-lime">è Intelligente</span>
           </h1>
