@@ -22,21 +22,12 @@
 .hero-bg {
   background: linear-gradient(
       135deg,
-      rgba(45, 80, 22, 0.55) 0%,
-      rgba(74, 124, 35, 0.45) 100%
+      rgba(45, 80, 22, 0.85) 0%,
+      rgba(74, 124, 35, 0.75) 100%
     ),
     url('/agro-claude-ai-studio-/hero-bg.jpg');
   background-size: cover;
   background-position: center;
-}
-
-/* Hero Text Enhancement */
-.hero-text-shadow {
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.hero-subtext-shadow {
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
 /* Smooth Scrolling */
