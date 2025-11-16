@@ -20,14 +20,26 @@
 
 /* Hero Background */
 .hero-bg {
-  background: linear-gradient(
-      135deg,
-      rgba(45, 80, 22, 0.85) 0%,
-      rgba(74, 124, 35, 0.75) 100%
-    ),
-    url('/agro-claude-ai-studio-/hero-bg.jpg');
+  background: url('/agro-claude-ai-studio-/hero-bg.jpg');
   background-size: cover;
   background-position: center;
+  position: relative;
+}
+
+/* Hero Text Enhancement - Strong shadows for readability without overlay */
+.hero-text-shadow {
+  text-shadow:
+    0 0 40px rgba(0, 0, 0, 0.8),
+    0 4px 20px rgba(0, 0, 0, 0.7),
+    0 2px 10px rgba(0, 0, 0, 0.9),
+    2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+.hero-subtext-shadow {
+  text-shadow:
+    0 0 30px rgba(0, 0, 0, 0.8),
+    0 2px 15px rgba(0, 0, 0, 0.7),
+    1px 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 /* Smooth Scrolling */
