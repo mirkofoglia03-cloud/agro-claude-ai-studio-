@@ -6,6 +6,7 @@ import type { NavItemType, TaskSuggestion, User, Task } from './types';
 import { SubscriptionPlan } from './types';
 import { generateTaskSuggestions, isFeatureAllowed } from './services';
 import { useWeather, useWeatherNotifications } from './hooks';
+import LandingPage from './LandingPage';
 
 // =================================================================
 // ERROR BOUNDARY COMPONENT
@@ -55,7 +56,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 // =================================================================
 // MAIN APPLICATION COMPONENT
 // =================================================================
-type AppState = 'choosing_plan' | 'registering' | 'loggedIn' | 'loading';
+type AppState = 'landing' | 'choosing_plan' | 'registering' | 'loggedIn' | 'loading';
 
 const App: React.FC = () => {
   const [activeView, setActiveView] = useState<NavItemType>('Il mio Orto');
@@ -67,12 +68,12 @@ const App: React.FC = () => {
   const [appState, setAppState] = useState<AppState>('loading');
   const [user, setUser] = useState<User | null>(null);
   const [plan, setPlan] = useState<SubscriptionPlan | null>(null);
-  
+
   const [tasks, setTasks] = useState<Task[]>(MOCK_TASKS);
-  
+
   const { weatherData, weatherLoading, weatherError, location } = useWeather(appState);
   useWeatherNotifications(weatherData);
-  
+
   useEffect(() => {
     const storedUser = localStorage.getItem('agroUser');
     const storedPlan = localStorage.getItem('agroPlan');
@@ -90,10 +91,12 @@ const App: React.FC = () => {
         console.error("Error parsing user data:", error);
         localStorage.removeItem('agroUser');
         localStorage.removeItem('agroPlan');
-        setAppState('choosing_plan');
+        // Mostra la Landing Page per i nuovi utenti
+        setAppState('landing');
       }
     } else {
-        setAppState('choosing_plan');
+        // Mostra la Landing Page per i nuovi utenti
+        setAppState('landing');
     }
   }, []);
 
@@ -128,8 +131,13 @@ const App: React.FC = () => {
     localStorage.removeItem('agroPlan');
     setUser(null);
     setPlan(null);
-    setAppState('choosing_plan');
+    setAppState('landing');
     setActiveView('Il mio Orto');
+  }, []);
+
+  // Handler per iniziare la registrazione dalla Landing Page
+  const handleGetStarted = useCallback(() => {
+    setAppState('choosing_plan');
   }, []);
 
   const handleNavClick = useCallback((view: NavItemType, tab: string | null = null) => {
@@ -174,13 +182,18 @@ const App: React.FC = () => {
   
   if (appState === 'loading') {
     return (
-      <div className="flex h-screen w-full items-center justify-center bg-gray-50">
+      <div className="flex h-screen w-full items-center justify-center bg-beige-crema">
         <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Caricamento...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-verde-principale mx-auto mb-4"></div>
+            <p className="text-grigio-medio">Caricamento...</p>
         </div>
       </div>
     );
+  }
+
+  // Mostra la Landing Page per i nuovi visitatori
+  if (appState === 'landing') {
+    return <LandingPage onGetStarted={handleGetStarted} />;
   }
 
   if (appState === 'choosing_plan') {
