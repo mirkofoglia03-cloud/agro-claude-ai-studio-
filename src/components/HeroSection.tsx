@@ -17,13 +17,13 @@ const HeroSection: React.FC = (): JSX.Element => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="fade-in-up">
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight hero-text-shadow">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
             Il Futuro dell'Agricoltura<br />
-            <span className="text-agro-lime drop-shadow-lg">è Intelligente</span>
+            <span className="text-agro-lime">è Intelligente</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-white mb-10 max-w-3xl mx-auto hero-subtext-shadow font-medium">
+          <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto">
             AgroIO utilizza l'intelligenza artificiale per ottimizzare le tue coltivazioni,
             ridurre gli sprechi e massimizzare i raccolti. Semplice, efficace, sostenibile.
           </p>
