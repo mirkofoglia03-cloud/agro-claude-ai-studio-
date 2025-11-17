@@ -5,6 +5,7 @@ const Header: React.FC = (): JSX.Element => {
   const navLinks: Array<{ href: string; label: string }> = [
     { href: '#features', label: 'Funzionalità' },
     { href: '#how-it-works', label: 'Come Funziona' },
+    { href: '#my-vegetables', label: 'I Miei Ortaggi' },
     { href: '#testimonials', label: 'Testimonianze' },
   ];
 
