@@ -91,7 +91,7 @@ const Header: React.FC = (): JSX.Element => {
                 variant="secondary"
                 className="px-6 py-2 text-base"
               >
-                Inizia Ora
+                Accedi
               </Button>
             </Link>
           </div>
@@ -121,7 +121,7 @@ const Header: React.FC = (): JSX.Element => {
                     variant="secondary"
                     className="w-full px-6 py-3 text-base"
                   >
-                    Inizia Ora
+                    Accedi
                   </Button>
                 </Link>
               </div>
