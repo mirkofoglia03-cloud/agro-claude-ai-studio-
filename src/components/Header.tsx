@@ -1,45 +1,106 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Button from './Button';
 
 const Header: React.FC = (): JSX.Element => {
-  const navLinks: Array<{ href: string; label: string }> = [
-    { href: '#features', label: 'Funzionalità' },
-    { href: '#how-it-works', label: 'Come Funziona' },
-    { href: '#my-vegetables', label: 'I Miei Ortaggi' },
-    { href: '#testimonials', label: 'Testimonianze' },
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const navLinks = [
+    { to: '/', label: 'Home', type: 'route' },
+    { to: '/dashboard', label: 'Dashboard', type: 'route' },
+    { to: '/calendar', label: 'Calendario', type: 'route' },
+    { to: '/monitoring', label: 'Monitoraggio', type: 'route' },
+    { to: '/guides', label: 'Guide', type: 'route' },
   ];
+
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center">
+          <Link to="/" className="flex items-center hover:opacity-80 transition">
             <span className="text-2xl font-bold text-agro-green">Agro</span>
             <span className="text-2xl font-bold text-agro-lime">IO</span>
-          </div>
+          </Link>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {navLinks.map((link: { href: string; label: string }) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-gray-700 hover:text-agro-green transition"
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex space-x-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`text-sm font-medium transition px-3 py-2 rounded-lg ${
+                  isActive(link.to)
+                    ? 'text-agro-green bg-agro-green/5'
+                    : 'text-gray-700 hover:text-agro-green hover:bg-agro-green/5'
+                }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <Button
-            variant="secondary"
-            className="px-6 py-2 text-base"
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition"
           >
-            Inizia Ora
-          </Button>
+            {isMenuOpen ? (
+              <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+
+          {/* CTA Button - Desktop */}
+          <div className="hidden lg:block">
+            <Button
+              variant="secondary"
+              className="px-6 py-2 text-base"
+            >
+              Inizia Ora
+            </Button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden py-4 border-t border-gray-200">
+            <nav className="flex flex-col space-y-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`text-sm font-medium transition px-4 py-3 rounded-lg ${
+                    isActive(link.to)
+                      ? 'text-agro-green bg-agro-green/5'
+                      : 'text-gray-700 hover:text-agro-green hover:bg-agro-green/5'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="pt-2">
+                <Button
+                  variant="secondary"
+                  className="w-full px-6 py-3 text-base"
+                >
+                  Inizia Ora
+                </Button>
+              </div>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
