@@ -1,12 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from './Button';
 
 const HeroSection: React.FC = (): JSX.Element => {
-  const handleTrialClick = (): void => {
-    console.log('Trial button clicked');
-    // Add trial signup logic here
-  };
-
   const handleVideoClick = (): void => {
     console.log('Video button clicked');
     // Add video modal logic here
@@ -30,9 +26,11 @@ const HeroSection: React.FC = (): JSX.Element => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" onClick={handleTrialClick}>
-              Prova Gratuita 30 Giorni
-            </Button>
+            <Link to="/login">
+              <Button variant="primary">
+                Prova Gratuita 30 Giorni
+              </Button>
+            </Link>
             <Button variant="outline" onClick={handleVideoClick}>
               Guarda il Video
             </Button>

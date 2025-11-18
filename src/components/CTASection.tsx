@@ -1,17 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from './Button';
 
 const CTASection: React.FC = (): JSX.Element => {
-  const handleTrialClick = (): void => {
-    console.log('Trial signup clicked');
-    // Add trial signup logic here
-  };
-
-  const handleExpertClick = (): void => {
-    console.log('Expert consultation clicked');
-    // Add expert consultation logic here
-  };
-
   return (
     <section className="py-24 bg-agro-green">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -28,12 +19,16 @@ const CTASection: React.FC = (): JSX.Element => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="white" onClick={handleTrialClick}>
-            Inizia la Prova Gratuita
-          </Button>
-          <Button variant="outline" onClick={handleExpertClick}>
-            Parla con un Esperto
-          </Button>
+          <Link to="/login">
+            <Button variant="white">
+              Inizia la Prova Gratuita
+            </Button>
+          </Link>
+          <Link to="/login">
+            <Button variant="outline">
+              Parla con un Esperto
+            </Button>
+          </Link>
         </div>
 
         {/* Trust Badge */}

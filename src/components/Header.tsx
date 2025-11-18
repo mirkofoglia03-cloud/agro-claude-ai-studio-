@@ -1,21 +1,40 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import Button from './Button';
 
 const Header: React.FC = (): JSX.Element => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuth();
 
-  const navLinks = [
-    { to: '/', label: 'Home', type: 'route' },
-    { to: '/dashboard', label: 'Dashboard', type: 'route' },
-    { to: '/calendar', label: 'Calendario', type: 'route' },
-    { to: '/monitoring', label: 'Monitoraggio', type: 'route' },
-    { to: '/guides', label: 'Guide', type: 'route' },
+  // Navigation links per utenti pubblici
+  const publicNavLinks = [
+    { to: '/', label: 'Home' },
+    { to: '/#features', label: 'Funzionalità' },
+    { to: '/#how-it-works', label: 'Come Funziona' },
   ];
+
+  // Navigation links per utenti autenticati
+  const authNavLinks = [
+    { to: '/my-vegetables', label: 'I Miei Ortaggi' },
+    { to: '/dashboard', label: 'Dashboard' },
+    { to: '/calendar', label: 'Calendario' },
+    { to: '/monitoring', label: 'Monitoraggio' },
+    { to: '/guides', label: 'Guide' },
+  ];
+
+  const navLinks = isAuthenticated ? authNavLinks : publicNavLinks;
 
   const isActive = (path: string) => {
     return location.pathname === path;
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+    setIsMenuOpen(false);
   };
 
   return (
@@ -63,12 +82,24 @@ const Header: React.FC = (): JSX.Element => {
 
           {/* CTA Button - Desktop */}
           <div className="hidden lg:block">
-            <Button
-              variant="secondary"
-              className="px-6 py-2 text-base"
-            >
-              Inizia Ora
-            </Button>
+            {isAuthenticated ? (
+              <Button
+                variant="secondary"
+                className="px-6 py-2 text-base"
+                onClick={handleLogout}
+              >
+                Logout
+              </Button>
+            ) : (
+              <Link to="/login">
+                <Button
+                  variant="secondary"
+                  className="px-6 py-2 text-base"
+                >
+                  Accedi
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
 
@@ -91,12 +122,24 @@ const Header: React.FC = (): JSX.Element => {
                 </Link>
               ))}
               <div className="pt-2">
-                <Button
-                  variant="secondary"
-                  className="w-full px-6 py-3 text-base"
-                >
-                  Inizia Ora
-                </Button>
+                {isAuthenticated ? (
+                  <Button
+                    variant="secondary"
+                    className="w-full px-6 py-3 text-base"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Button>
+                ) : (
+                  <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                    <Button
+                      variant="secondary"
+                      className="w-full px-6 py-3 text-base"
+                    >
+                      Accedi
+                    </Button>
+                  </Link>
+                )}
               </div>
             </nav>
           </div>
