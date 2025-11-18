@@ -66,7 +66,6 @@ export interface AgricultureProduct {
   scientificName: string;
   category: ProductCategory;
   image: string;
-  emoji: string;
   description: string;
 
   // Cultivation info

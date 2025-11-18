@@ -56,9 +56,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
           alt={product.name}
           className="w-full h-full object-cover"
         />
-        <div className="absolute top-3 left-3">
-          <span className="text-4xl">{product.emoji}</span>
-        </div>
         <div className="absolute top-3 right-3">
           <span
             className={`px-3 py-1 rounded-full text-xs font-semibold ${getDifficultyColor(
@@ -90,13 +87,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <div className="bg-agro-cream rounded-lg p-2">
             <div className="text-xs text-gray-500 mb-1">Semina</div>
             <div className="text-sm font-medium text-agro-green-dark">
-              {product.sowingPeriod.start} - {product.sowingPeriod.end}
+              {product.sowingPeriod}
             </div>
           </div>
           <div className="bg-agro-cream rounded-lg p-2">
             <div className="text-xs text-gray-500 mb-1">Raccolto</div>
             <div className="text-sm font-medium text-agro-green-dark">
-              {product.harvestPeriod.start} - {product.harvestPeriod.end}
+              {product.harvestPeriod}
             </div>
           </div>
         </div>
@@ -123,9 +120,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
             Distanze
           </div>
           <div className="flex justify-between text-xs">
-            <span>File: {product.rowDistance}cm</span>
-            <span>Piante: {product.plantDistance}cm</span>
-            <span>Prof: {product.sowingDepth}cm</span>
+            <span>File: {product.rowDistance} cm</span>
+            <span>Piante: {product.plantDistance} cm</span>
+            <span>Prof: {product.sowingDepth} cm</span>
           </div>
         </div>
 

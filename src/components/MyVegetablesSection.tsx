@@ -12,10 +12,13 @@ const MyVegetablesSection: React.FC = (): JSX.Element => {
 
   const categories = [
     { value: 'tutti', label: 'Tutti', icon: '🌱' },
-    { value: 'ortaggi', label: 'Ortaggi', icon: '🥬' },
-    { value: 'legumi', label: 'Legumi', icon: '🫘' },
-    { value: 'erbe-aromatiche', label: 'Erbe Aromatiche', icon: '🌿' },
-    { value: 'frutta', label: 'Frutta', icon: '🍓' },
+    { value: 'solanacee', label: 'Solanacee', icon: '🍅' },
+    { value: 'cucurbitacee', label: 'Cucurbitacee', icon: '🥒' },
+    { value: 'brassicacee', label: 'Brassicacee', icon: '🥬' },
+    { value: 'leguminose', label: 'Leguminose', icon: '🫘' },
+    { value: 'lamiacee', label: 'Erbe Aromatiche', icon: '🌿' },
+    { value: 'cereali', label: 'Cereali', icon: '🌾' },
+    { value: 'funghi', label: 'Funghi', icon: '🍄' },
   ];
 
   const filteredProducts = useMemo(() => {
@@ -137,27 +140,27 @@ const MyVegetablesSection: React.FC = (): JSX.Element => {
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white rounded-xl p-6 text-center shadow-md">
             <div className="text-3xl font-bold text-agro-green-dark mb-1">
-              {agricultureProducts.filter((p) => p.category === 'ortaggi').length}
+              {agricultureProducts.filter((p) => p.category === 'solanacee' || p.category === 'cucurbitacee' || p.category === 'brassicacee').length}
             </div>
             <div className="text-gray-600">Ortaggi</div>
           </div>
           <div className="bg-white rounded-xl p-6 text-center shadow-md">
             <div className="text-3xl font-bold text-agro-green-dark mb-1">
-              {agricultureProducts.filter((p) => p.category === 'legumi').length}
+              {agricultureProducts.filter((p) => p.category === 'leguminose').length}
             </div>
-            <div className="text-gray-600">Legumi</div>
+            <div className="text-gray-600">Leguminose</div>
           </div>
           <div className="bg-white rounded-xl p-6 text-center shadow-md">
             <div className="text-3xl font-bold text-agro-green-dark mb-1">
-              {agricultureProducts.filter((p) => p.category === 'erbe-aromatiche').length}
+              {agricultureProducts.filter((p) => p.category === 'lamiacee').length}
             </div>
-            <div className="text-gray-600">Erbe Aromatiche</div>
+            <div className="text-gray-600">Aromatiche</div>
           </div>
           <div className="bg-white rounded-xl p-6 text-center shadow-md">
             <div className="text-3xl font-bold text-agro-green-dark mb-1">
-              {agricultureProducts.filter((p) => p.category === 'frutta').length}
+              {agricultureProducts.filter((p) => p.category === 'cereali').length}
             </div>
-            <div className="text-gray-600">Frutta</div>
+            <div className="text-gray-600">Cereali</div>
           </div>
         </div>
       </div>
