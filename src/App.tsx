@@ -1,25 +1,30 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import WhyDifferentSection from './components/WhyDifferentSection';
-import HowItWorksSection from './components/HowItWorksSection';
-import MyVegetablesSection from './components/MyVegetablesSection';
-import TestimonialsSection from './components/TestimonialsSection';
-import CTASection from './components/CTASection';
 import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import DashboardPage from './pages/DashboardPage';
+import CalendarPage from './pages/CalendarPage';
+import MonitoringPage from './pages/MonitoringPage';
+import GuidesPage from './pages/GuidesPage';
 
 const App: React.FC = (): JSX.Element => {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <HeroSection />
-      <WhyDifferentSection />
-      <HowItWorksSection />
-      <MyVegetablesSection />
-      <TestimonialsSection />
-      <CTASection />
-      <Footer />
-    </div>
+    <Router basename="/agro-claude-ai-studio-">
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/calendar" element={<CalendarPage />} />
+            <Route path="/monitoring" element={<MonitoringPage />} />
+            <Route path="/guides" element={<GuidesPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 

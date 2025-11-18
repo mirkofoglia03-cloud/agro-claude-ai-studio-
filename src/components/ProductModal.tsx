@@ -48,6 +48,8 @@ const ProductModal: React.FC<ProductModalProps> = ({
         return 'Medio 💧💧';
       case 'alto':
         return 'Alto 💧💧💧';
+      case 'molto-alto':
+        return 'Molto Alto 💧💧💧💧';
       default:
         return needs;
     }
@@ -93,24 +95,26 @@ const ProductModal: React.FC<ProductModalProps> = ({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-5xl">{product.emoji}</span>
-                <div>
-                  <h2 className="text-3xl font-bold text-white">
-                    {product.name}
-                  </h2>
-                  <p className="text-white/80 italic">
-                    {product.scientificName}
-                  </p>
-                </div>
+              <div className="mb-2">
+                <h2 className="text-3xl font-bold text-white mb-1">
+                  {product.name}
+                </h2>
+                <p className="text-white/80 italic text-lg">
+                  {product.scientificName}
+                </p>
               </div>
-              <span
-                className={`inline-block px-4 py-1 rounded-full text-sm font-semibold ${getDifficultyColor(
-                  product.difficulty
-                )}`}
-              >
-                Difficolt&agrave;: {product.difficulty}
-              </span>
+              <div className="flex gap-2">
+                <span
+                  className={`inline-block px-4 py-1 rounded-full text-sm font-semibold ${getDifficultyColor(
+                    product.difficulty
+                  )}`}
+                >
+                  Difficolt&agrave;: {product.difficulty}
+                </span>
+                <span className="inline-block px-4 py-1 rounded-full text-sm font-semibold bg-blue-100 text-blue-800">
+                  {product.category}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -129,16 +133,11 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Semina:</span>
-                    <span className="font-medium">
-                      {product.sowingPeriod.start} - {product.sowingPeriod.end}
-                    </span>
+                    <span className="font-medium">{product.sowingPeriod}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Raccolto:</span>
-                    <span className="font-medium">
-                      {product.harvestPeriod.start} -{' '}
-                      {product.harvestPeriod.end}
-                    </span>
+                    <span className="font-medium">{product.harvestPeriod}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Germinazione:</span>
@@ -174,10 +173,15 @@ const ProductModal: React.FC<ProductModalProps> = ({
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Temperatura ideale:</span>
+                    <span className="text-gray-600">Temperatura:</span>
                     <span className="font-medium">
-                      {product.idealTemperature.min}°C -{' '}
-                      {product.idealTemperature.max}°C
+                      {product.temperatureMin}°C - {product.temperatureMax}°C
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">T. ideale:</span>
+                    <span className="font-medium">
+                      {product.temperatureIdeal}°C
                     </span>
                   </div>
                 </div>
@@ -191,21 +195,15 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Tra le file:</span>
-                    <span className="font-medium">
-                      {product.rowDistance} cm
-                    </span>
+                    <span className="font-medium">{product.rowDistance} cm</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Tra le piante:</span>
-                    <span className="font-medium">
-                      {product.plantDistance} cm
-                    </span>
+                    <span className="font-medium">{product.plantDistance} cm</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Profondit&agrave; semina:</span>
-                    <span className="font-medium">
-                      {product.sowingDepth} cm
-                    </span>
+                    <span className="font-medium">{product.sowingDepth} cm</span>
                   </div>
                 </div>
               </div>
@@ -213,17 +211,17 @@ const ProductModal: React.FC<ProductModalProps> = ({
               {/* Soil Type */}
               <div className="bg-agro-lime/10 rounded-xl p-4">
                 <h3 className="font-bold text-agro-green-dark mb-3 flex items-center gap-2">
-                  <span>🌍</span> Tipo di Terreno
+                  <span>🌍</span> Terreno e pH
                 </h3>
-                <div className="flex flex-wrap gap-2">
-                  {product.soilType.map((soil) => (
-                    <span
-                      key={soil}
-                      className="px-3 py-1 bg-white text-gray-700 rounded-full text-sm"
-                    >
-                      {soil}
-                    </span>
-                  ))}
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Tipo:</span>
+                    <span className="font-medium">{product.soilType}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">pH:</span>
+                    <span className="font-medium">{product.soilPH}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -236,9 +234,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {product.goodCompanions.length > 0 ? (
-                    product.goodCompanions.map((companion) => (
+                    product.goodCompanions.map((companion, idx) => (
                       <span
-                        key={companion}
+                        key={idx}
                         className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
                       >
                         {companion}
@@ -258,9 +256,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {product.badCompanions.length > 0 ? (
-                    product.badCompanions.map((companion) => (
+                    product.badCompanions.map((companion, idx) => (
                       <span
-                        key={companion}
+                        key={idx}
                         className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm"
                       >
                         {companion}
@@ -281,30 +279,15 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 <span>🏡</span> Ambienti Consigliati
               </h3>
               <div className="flex flex-wrap gap-2">
-                {product.suitableFor.map((env) => (
+                {product.suitableFor.map((env, idx) => (
                   <span
-                    key={env}
+                    key={idx}
                     className="px-4 py-2 bg-agro-green text-white rounded-full text-sm font-medium"
                   >
-                    {env.replace('-', ' ')}
+                    {env}
                   </span>
                 ))}
               </div>
-            </div>
-
-            {/* Tips */}
-            <div className="bg-yellow-50 rounded-xl p-4 mb-6">
-              <h3 className="font-bold text-yellow-800 mb-3 flex items-center gap-2">
-                <span>💡</span> Consigli Utili
-              </h3>
-              <ul className="space-y-2">
-                {product.tips.map((tip, index) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <span className="text-yellow-600 mt-1">•</span>
-                    <span className="text-gray-700">{tip}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
 
             {/* Diseases */}
@@ -313,9 +296,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 <span>⚠️</span> Malattie e Parassiti Comuni
               </h3>
               <div className="flex flex-wrap gap-2">
-                {product.diseases.map((disease) => (
+                {product.diseases.map((disease, idx) => (
                   <span
-                    key={disease}
+                    key={idx}
                     className="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm"
                   >
                     {disease}
@@ -324,13 +307,13 @@ const ProductModal: React.FC<ProductModalProps> = ({
               </div>
             </div>
 
-            {/* Nutritional Info */}
-            {product.nutritionalInfo && (
-              <div className="bg-blue-50 rounded-xl p-4">
-                <h3 className="font-bold text-blue-800 mb-3 flex items-center gap-2">
-                  <span>🥗</span> Informazioni Nutrizionali
+            {/* Notes */}
+            {product.notes && (
+              <div className="bg-yellow-50 rounded-xl p-4">
+                <h3 className="font-bold text-yellow-800 mb-3 flex items-center gap-2">
+                  <span>💡</span> Note Importanti
                 </h3>
-                <p className="text-gray-700">{product.nutritionalInfo}</p>
+                <p className="text-gray-700">{product.notes}</p>
               </div>
             )}
           </div>
