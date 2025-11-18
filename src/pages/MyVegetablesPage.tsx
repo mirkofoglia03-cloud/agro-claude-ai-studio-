@@ -3,7 +3,7 @@ import MyVegetablesSection from '../components/MyVegetablesSection';
 
 const MyVegetablesPage: React.FC = (): JSX.Element => {
   return (
-    <div className="pt-16">
+    <div>
       <MyVegetablesSection />
     </div>
   );

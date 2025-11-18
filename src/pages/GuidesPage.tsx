@@ -108,7 +108,7 @@ const GuidesPage: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className="min-h-screen bg-agro-cream pt-24 pb-16">
+    <div className="min-h-screen bg-agro-cream pt-6 pb-16">
       <div className="container mx-auto px-4">
         {/* Page Header */}
         <div className="text-center mb-12">

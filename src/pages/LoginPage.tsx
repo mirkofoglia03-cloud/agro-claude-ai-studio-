@@ -20,11 +20,11 @@ const LoginPage: React.FC = (): JSX.Element => {
 
     // Per la demo, accetta qualsiasi credenziale
     login(email, password);
-    navigate('/my-vegetables');
+    navigate('/dashboard');
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-agro-cream via-white to-agro-lime/10 pt-24 pb-16 flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-agro-cream via-white to-agro-lime/10 pt-6 pb-16 flex items-center justify-center">
       <div className="container mx-auto px-4">
         <div className="max-w-md mx-auto">
           {/* Logo */}
