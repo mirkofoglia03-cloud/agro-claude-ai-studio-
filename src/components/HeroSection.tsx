@@ -1,13 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from './Button';
 
 const HeroSection: React.FC = (): JSX.Element => {
-  const handleVideoClick = (): void => {
-    console.log('Video button clicked');
-    // Add video modal logic here
-  };
-
   return (
     <section className="hero-bg min-h-screen flex items-center justify-center pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -23,18 +16,6 @@ const HeroSection: React.FC = (): JSX.Element => {
             AgroIO utilizza l'intelligenza artificiale per ottimizzare le tue coltivazioni,
             ridurre gli sprechi e massimizzare i raccolti. Semplice, efficace, sostenibile.
           </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/login">
-              <Button variant="primary">
-                Prova Gratuita 30 Giorni
-              </Button>
-            </Link>
-            <Button variant="outline" onClick={handleVideoClick}>
-              Guarda il Video
-            </Button>
-          </div>
         </div>
       </div>
     </section>
