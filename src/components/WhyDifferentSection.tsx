@@ -5,19 +5,19 @@ import { FeatureCardProps } from '../types';
 const WhyDifferentSection: React.FC = (): JSX.Element => {
   const features: FeatureCardProps[] = [
     {
-      icon: '🏗️',
+      imageUrl: 'https://images.unsplash.com/photo-1416339442236-8ceb164046f8?w=800&q=80',
       title: '3D Project',
       description:
         'Progetta il tuo orto in base alle tue esigenze',
     },
     {
-      icon: '📅',
+      imageUrl: 'https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=800&q=80',
       title: 'Calendario',
       description:
         'Organizza, Monitora e Programma le tue attività',
     },
     {
-      icon: '📊',
+      imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
       title: 'DashBoard',
       description:
         'Trasforma dei semplici dati in azioni concrete',
