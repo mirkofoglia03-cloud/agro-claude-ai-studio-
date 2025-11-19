@@ -1,12 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from './Button';
 
 const HeroSection: React.FC = (): JSX.Element => {
-  const handleTrialClick = (): void => {
-    console.log('Trial button clicked');
-    // Add trial signup logic here
-  };
-
   const handleVideoClick = (): void => {
     console.log('Video button clicked');
     // Add video modal logic here
@@ -17,22 +13,24 @@ const HeroSection: React.FC = (): JSX.Element => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="fade-in-up">
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-agro-green mb-6 leading-tight">
             Il Futuro dell'Agricoltura<br />
             <span className="text-agro-lime">è Intelligente</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white mb-10 max-w-3xl mx-auto font-semibold">
             AgroIO utilizza l'intelligenza artificiale per ottimizzare le tue coltivazioni,
             ridurre gli sprechi e massimizzare i raccolti. Semplice, efficace, sostenibile.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" onClick={handleTrialClick}>
-              Prova Gratuita 30 Giorni
-            </Button>
+            <Link to="/login">
+              <Button variant="primary">
+                Prova Gratuita 30 Giorni
+              </Button>
+            </Link>
             <Button variant="outline" onClick={handleVideoClick}>
               Guarda il Video
             </Button>
