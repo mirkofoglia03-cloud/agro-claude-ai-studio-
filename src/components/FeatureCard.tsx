@@ -26,12 +26,12 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
       <div className="p-8 pt-6">
         {/* Title */}
-        <h3 className="text-xl font-bold text-agro-green-dark mb-4">
+        <h3 className="text-xl font-bold text-agro-green-dark mb-4 text-center">
           {title}
         </h3>
 
         {/* Description */}
-        <p className="text-gray-600 leading-relaxed">
+        <p className="text-gray-600 leading-relaxed text-center">
           {description}
         </p>
       </div>
