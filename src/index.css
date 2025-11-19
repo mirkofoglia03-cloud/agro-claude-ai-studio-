@@ -20,7 +20,12 @@
 
 /* Hero Background */
 .hero-bg {
-  background-image: url('/agro-claude-ai-studio-/hero-bg.jpg');
+  background: linear-gradient(
+      135deg,
+      rgba(45, 80, 22, 0.85) 0%,
+      rgba(74, 124, 35, 0.75) 100%
+    ),
+    url('https://drive.google.com/uc?export=view&id=1ZQb4U4DRd0VixDDkyHevxIwk7u9ZC07w');
   background-size: cover;
   background-position: center;
 }
