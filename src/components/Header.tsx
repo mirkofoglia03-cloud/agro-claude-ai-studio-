@@ -51,22 +51,17 @@ const Header: React.FC = (): JSX.Element => {
             <span className="text-2xl font-bold text-agro-lime">IO</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex space-x-6">
-            {publicNavLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`text-sm font-medium transition px-3 py-2 rounded-lg ${
-                  isActive(link.to)
-                    ? 'text-agro-green bg-agro-green/5'
-                    : 'text-gray-700 hover:text-agro-green hover:bg-agro-green/5'
-                }`}
+          {/* CTA Button - Desktop - Spostato qui */}
+          <div className="ml-auto mr-4">
+            <Link to="/login">
+              <Button
+                variant="secondary"
+                className="px-6 py-2 text-base"
               >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+                Inizia Ora
+              </Button>
+            </Link>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -83,18 +78,6 @@ const Header: React.FC = (): JSX.Element => {
               </svg>
             )}
           </button>
-
-          {/* CTA Button - Desktop */}
-          <div className="hidden lg:block">
-            <Link to="/login">
-              <Button
-                variant="secondary"
-                className="px-6 py-2 text-base"
-              >
-                Accedi
-              </Button>
-            </Link>
-          </div>
         </div>
 
         {/* Mobile Menu */}

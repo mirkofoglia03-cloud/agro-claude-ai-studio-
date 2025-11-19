@@ -5,20 +5,20 @@ import { FeatureCardProps } from '../types';
 const WhyDifferentSection: React.FC = (): JSX.Element => {
   const features: FeatureCardProps[] = [
     {
-      icon: '🌱',
-      title: 'AI Predittiva',
+      imageUrl: 'https://images.unsplash.com/photo-1416339442236-8ceb164046f8?w=800&q=80',
+      title: '3D Project',
       description:
         'Algoritmi avanzati che prevedono malattie, condizioni meteo e momenti ottimali per semina e raccolta con precisione del 95%.',
     },
     {
-      icon: '💧',
-      title: 'Risparmio Idrico',
+      imageUrl: 'https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=800&q=80',
+      title: 'Calendario',
       description:
         'Sistema di irrigazione intelligente che riduce il consumo d\'acqua fino al 40% mantenendo la resa ottimale delle colture.',
     },
     {
-      icon: '📊',
-      title: 'Dashboard Intuitiva',
+      imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+      title: 'DashBoard',
       description:
         'Monitora tutti i tuoi campi da un\'unica interfaccia semplice. Dati complessi trasformati in azioni concrete.',
     },

@@ -1,7 +1,8 @@
 // Types for AgroIO Landing Page
 
 export interface FeatureCardProps {
-  icon: string;
+  icon?: string;
+  imageUrl?: string;
   title: string;
   description: string;
 }
