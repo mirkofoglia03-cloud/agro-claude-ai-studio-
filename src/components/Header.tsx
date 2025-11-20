@@ -52,7 +52,7 @@ const Header: React.FC = (): JSX.Element => {
           </Link>
 
           {/* CTA Buttons - Desktop */}
-          <div className="ml-auto flex items-center gap-3">
+          <div className="ml-auto hidden lg:flex items-center gap-3">
             <Link to="/login?mode=login">
               <Button
                 variant="outline"
