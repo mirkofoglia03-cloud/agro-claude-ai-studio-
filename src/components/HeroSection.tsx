@@ -5,7 +5,7 @@ const HeroSection: React.FC = (): JSX.Element => {
     <section
       className="min-h-screen flex items-center justify-center pt-16 bg-cover bg-center relative"
       style={{
-        backgroundImage: 'url(https://drive.google.com/uc?export=view&id=1TmD1GbAdoYz3kggGrkacBUbpJ6RmySwx)',
+        backgroundImage: 'url(/images/hero-section.jpg)',
       }}
     >
       {/* Overlay scuro per leggibilità */}
