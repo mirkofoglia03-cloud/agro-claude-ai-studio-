@@ -10,6 +10,8 @@ const LoginPage: React.FC = (): JSX.Element => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [zipCode, setZipCode] = useState('');
   const [socialWebsite, setSocialWebsite] = useState('');
   const [companyName, setCompanyName] = useState('');
 
@@ -25,8 +27,8 @@ const LoginPage: React.FC = (): JSX.Element => {
     e.preventDefault();
     setError('');
 
-    if (!firstName || !lastName || !email) {
-      setError('Nome, Cognome ed Email sono obbligatori');
+    if (!firstName || !lastName || !email || !address || !zipCode) {
+      setError('Nome, Cognome, Email, Indirizzo e CAP sono obbligatori');
       return;
     }
 
@@ -117,6 +119,39 @@ const LoginPage: React.FC = (): JSX.Element => {
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-agro-lime focus:outline-none transition"
                     placeholder="tua@email.com"
                     required
+                  />
+                </div>
+
+                {/* Indirizzo */}
+                <div>
+                  <label htmlFor="address" className="block text-sm font-semibold text-gray-700 mb-2">
+                    Indirizzo *
+                  </label>
+                  <input
+                    id="address"
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-agro-lime focus:outline-none transition"
+                    placeholder="Via, numero civico, città"
+                    required
+                  />
+                </div>
+
+                {/* CAP */}
+                <div>
+                  <label htmlFor="zipCode" className="block text-sm font-semibold text-gray-700 mb-2">
+                    CAP *
+                  </label>
+                  <input
+                    id="zipCode"
+                    type="text"
+                    value={zipCode}
+                    onChange={(e) => setZipCode(e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-agro-lime focus:outline-none transition"
+                    placeholder="00100"
+                    required
+                    maxLength={5}
                   />
                 </div>
 
@@ -258,22 +293,6 @@ const LoginPage: React.FC = (): JSX.Element => {
               >
                 {isLoginMode ? 'Registrati' : 'Accedi'}
               </a>
-            </div>
-          </div>
-
-          {/* Features Preview - Removed emojis */}
-          <div className="mt-8 grid grid-cols-3 gap-4 text-center">
-            <div className="bg-white/50 backdrop-blur rounded-xl p-4">
-              <p className="text-sm font-semibold text-gray-700 mb-1">Database Completo</p>
-              <p className="text-xs text-gray-600">60+ prodotti</p>
-            </div>
-            <div className="bg-white/50 backdrop-blur rounded-xl p-4">
-              <p className="text-sm font-semibold text-gray-700 mb-1">Calendario Smart</p>
-              <p className="text-xs text-gray-600">Pianifica attività</p>
-            </div>
-            <div className="bg-white/50 backdrop-blur rounded-xl p-4">
-              <p className="text-sm font-semibold text-gray-700 mb-1">Monitoraggio</p>
-              <p className="text-xs text-gray-600">Dati in tempo reale</p>
             </div>
           </div>
         </div>
