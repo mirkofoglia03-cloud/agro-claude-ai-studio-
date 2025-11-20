@@ -12,6 +12,9 @@ import MyVegetablesPage from './pages/MyVegetablesPage';
 import CalendarPage from './pages/CalendarPage';
 import MonitoringPage from './pages/MonitoringPage';
 import GuidesPage from './pages/GuidesPage';
+import MapPage from './pages/MapPage';
+import WeatherPage from './pages/WeatherPage';
+import PhotoMonitoringPage from './pages/PhotoMonitoringPage';
 
 const App: React.FC = (): JSX.Element => {
   return (
@@ -105,6 +108,45 @@ const App: React.FC = (): JSX.Element => {
                   <Header />
                   <DashboardLayout>
                     <GuidesPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/map"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <MapPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/weather"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <WeatherPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/photo-monitoring"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <PhotoMonitoringPage />
                   </DashboardLayout>
                 </div>
               </ProtectedRoute>
