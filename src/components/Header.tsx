@@ -51,8 +51,16 @@ const Header: React.FC = (): JSX.Element => {
             <span className="text-2xl font-bold text-agro-lime">IO</span>
           </Link>
 
-          {/* CTA Button - Desktop - Spostato qui */}
-          <div className="ml-auto mr-4">
+          {/* CTA Buttons - Desktop */}
+          <div className="ml-auto flex items-center gap-3">
+            <Link to="/login?mode=login">
+              <Button
+                variant="outline"
+                className="px-6 py-2 text-base"
+              >
+                Accedi
+              </Button>
+            </Link>
             <Link to="/login">
               <Button
                 variant="secondary"
@@ -98,7 +106,15 @@ const Header: React.FC = (): JSX.Element => {
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-2">
+              <div className="pt-2 space-y-2">
+                <Link to="/login?mode=login" onClick={() => setIsMenuOpen(false)}>
+                  <Button
+                    variant="outline"
+                    className="w-full px-6 py-3 text-base"
+                  >
+                    Accedi
+                  </Button>
+                </Link>
                 <Link to="/login" onClick={() => setIsMenuOpen(false)}>
                   <Button
                     variant="secondary"
