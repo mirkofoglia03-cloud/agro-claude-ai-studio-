@@ -59,6 +59,14 @@ export type ProductCategory =
   | 'lamiacee'
   | 'rosacee'
   | 'funghi'
+  | 'caprifoliaceae'
+  | 'asparagaceae'
+  | 'boraginaceae'
+  | 'portulacaceae'
+  | 'polygonaceae'
+  | 'zingiberaceae'
+  | 'ericaceae'
+  | 'grossulariaceae'
   | 'altre';
 
 export interface AgricultureProduct {
