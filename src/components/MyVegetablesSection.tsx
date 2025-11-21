@@ -264,11 +264,6 @@ const MyVegetablesSection: React.FC = (): JSX.Element => {
               </button>
             ))}
           </div>
-
-          {/* Results Count */}
-          <div className="mt-4 text-sm text-gray-600">
-            {filteredProducts.length} prodotti trovati
-          </div>
         </div>
 
         {/* Products Grid */}
