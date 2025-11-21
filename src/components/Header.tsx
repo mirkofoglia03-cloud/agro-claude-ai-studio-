@@ -4,7 +4,23 @@ import { useAuth } from '../context/AuthContext';
 import Button from './Button';
 
 const Header: React.FC = (): JSX.Element => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
+
+  // Durante il caricamento, mostra solo il logo per evitare flash
+  if (isLoading) {
+    return (
+      <header className="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <Link to="/" className="flex items-center hover:opacity-80 transition">
+              <span className="text-2xl font-bold text-agro-green">Agro</span>
+              <span className="text-2xl font-bold text-agro-lime">IO</span>
+            </Link>
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   // Se l'utente è autenticato, mostra solo il logo
   if (isAuthenticated) {
