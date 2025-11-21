@@ -1,169 +1,55 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const WeatherPage: React.FC = (): JSX.Element => {
-  const [selectedCity, setSelectedCity] = useState('Roma');
-
-  const currentWeather = {
-    temperature: 22,
-    condition: 'Soleggiato',
-    humidity: 65,
-    wind: 12,
-    precipitation: 10,
-    uvIndex: 6,
-  };
-
-  const weeklyForecast = [
-    { day: 'Lun', temp: '20°/12°', condition: '☀️', rain: '0%' },
-    { day: 'Mar', temp: '22°/14°', condition: '⛅', rain: '10%' },
-    { day: 'Mer', temp: '19°/13°', condition: '🌧️', rain: '70%' },
-    { day: 'Gio', temp: '21°/15°', condition: '⛅', rain: '20%' },
-    { day: 'Ven', temp: '23°/16°', condition: '☀️', rain: '0%' },
-    { day: 'Sab', temp: '24°/17°', condition: '☀️', rain: '5%' },
-    { day: 'Dom', temp: '22°/15°', condition: '⛅', rain: '15%' },
-  ];
-
-  const recommendations = [
-    { icon: '💧', title: 'Irrigazione', desc: 'Consigliata domani mattina', color: 'bg-blue-100 text-blue-800' },
-    { icon: '🌱', title: 'Semina', desc: 'Condizioni ideali mercoledì', color: 'bg-green-100 text-green-800' },
-    { icon: '⚠️', title: 'Allerta', desc: 'Pioggia prevista mercoledì', color: 'bg-yellow-100 text-yellow-800' },
-  ];
-
+const WeatherPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-agro-cream pt-6 pb-16">
-      <div className="container mx-auto px-4">
-        {/* Page Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-extrabold text-agro-green-dark mb-4">
-            Meteo & Radar
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Previsioni meteorologiche per ottimizzare le tue colture
+    <div className="p-6">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-3xl font-bold text-gray-900 mb-6">Meteo</h1>
+
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <p className="text-gray-600 mb-4">
+            Monitora le condizioni meteorologiche per pianificare al meglio le attività del tuo orto.
           </p>
-        </div>
 
-        {/* Location Selector */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-          <div className="flex items-center gap-4">
-            <svg className="w-6 h-6 text-agro-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <select
-              value={selectedCity}
-              onChange={(e) => setSelectedCity(e.target.value)}
-              className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-agro-lime focus:outline-none transition"
-            >
-              <option value="Roma">Roma</option>
-              <option value="Milano">Milano</option>
-              <option value="Napoli">Napoli</option>
-              <option value="Torino">Torino</option>
-              <option value="Firenze">Firenze</option>
-            </select>
-            <button className="px-6 py-3 bg-gradient-to-r from-agro-green to-agro-lime text-white font-bold rounded-xl hover:shadow-lg transition">
-              Aggiorna
-            </button>
-          </div>
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+            <div className="bg-blue-50 rounded-lg p-6 text-center">
+              <svg className="w-12 h-12 mx-auto mb-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+              </svg>
+              <h3 className="text-2xl font-bold text-gray-800">--°C</h3>
+              <p className="text-sm text-gray-600">Temperatura</p>
+            </div>
 
-        {/* Current Weather Card */}
-        <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl shadow-xl p-8 mb-6 text-white">
-          <div className="flex items-start justify-between mb-6">
-            <div>
-              <h2 className="text-3xl font-bold mb-2">{selectedCity}</h2>
-              <p className="text-white/80">Condizioni Attuali</p>
+            <div className="bg-blue-50 rounded-lg p-6 text-center">
+              <svg className="w-12 h-12 mx-auto mb-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+              <h3 className="text-2xl font-bold text-gray-800">--%</h3>
+              <p className="text-sm text-gray-600">Umidità</p>
             </div>
-            <div className="text-6xl">☀️</div>
-          </div>
-          <div className="flex items-end gap-4 mb-6">
-            <div className="text-7xl font-bold">{currentWeather.temperature}°</div>
-            <div className="text-2xl mb-4">{currentWeather.condition}</div>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-white/20 backdrop-blur rounded-xl p-4">
-              <div className="text-white/70 text-sm mb-1">Umidità</div>
-              <div className="text-2xl font-bold">{currentWeather.humidity}%</div>
-            </div>
-            <div className="bg-white/20 backdrop-blur rounded-xl p-4">
-              <div className="text-white/70 text-sm mb-1">Vento</div>
-              <div className="text-2xl font-bold">{currentWeather.wind} km/h</div>
-            </div>
-            <div className="bg-white/20 backdrop-blur rounded-xl p-4">
-              <div className="text-white/70 text-sm mb-1">Precipitazioni</div>
-              <div className="text-2xl font-bold">{currentWeather.precipitation}%</div>
-            </div>
-            <div className="bg-white/20 backdrop-blur rounded-xl p-4">
-              <div className="text-white/70 text-sm mb-1">Indice UV</div>
-              <div className="text-2xl font-bold">{currentWeather.uvIndex}</div>
-            </div>
-          </div>
-        </div>
 
-        {/* Weekly Forecast */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6">
-          <h2 className="text-2xl font-bold text-agro-green-dark mb-6">Previsioni Settimanali</h2>
-          <div className="grid grid-cols-2 md:grid-cols-7 gap-4">
-            {weeklyForecast.map((day, index) => (
-              <div
-                key={index}
-                className="bg-agro-cream rounded-xl p-4 text-center hover:shadow-lg transition"
-              >
-                <div className="font-bold text-agro-green-dark mb-2">{day.day}</div>
-                <div className="text-4xl mb-2">{day.condition}</div>
-                <div className="font-semibold text-gray-700 mb-2">{day.temp}</div>
-                <div className="text-sm text-blue-600">💧 {day.rain}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+            <div className="bg-blue-50 rounded-lg p-6 text-center">
+              <svg className="w-12 h-12 mx-auto mb-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+              </svg>
+              <h3 className="text-2xl font-bold text-gray-800">-- km/h</h3>
+              <p className="text-sm text-gray-600">Vento</p>
+            </div>
 
-        {/* Radar Map */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-6">
-          <div className="bg-gradient-to-r from-agro-green to-agro-lime p-4 text-white">
-            <h2 className="text-xl font-bold">Radar Meteorologico</h2>
-            <p className="text-sm text-white/80">Visualizzazione precipitazioni in tempo reale</p>
-          </div>
-          <div className="relative w-full h-[400px] bg-gray-100">
-            {/* Placeholder per radar meteo - può essere integrato con API meteo reali */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-6xl mb-4">🌧️</div>
-                <p className="text-gray-600 font-semibold">Radar Meteo</p>
-                <p className="text-sm text-gray-500">Dati radar in arrivo...</p>
-              </div>
+            <div className="bg-blue-50 rounded-lg p-6 text-center">
+              <svg className="w-12 h-12 mx-auto mb-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              <h3 className="text-2xl font-bold text-gray-800">-- UV</h3>
+              <p className="text-sm text-gray-600">Indice UV</p>
             </div>
           </div>
-          <div className="p-4 bg-gray-50 flex justify-between items-center">
-            <div className="flex gap-4 text-sm">
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-blue-200 rounded"></div>
-                <span>Leggera</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-blue-400 rounded"></div>
-                <span>Moderata</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-blue-600 rounded"></div>
-                <span>Intensa</span>
-              </div>
-            </div>
-            <button className="px-4 py-2 bg-white border-2 border-gray-200 rounded-lg hover:border-agro-lime transition text-sm font-semibold">
-              Aggiorna Radar
-            </button>
-          </div>
-        </div>
 
-        {/* Recommendations */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {recommendations.map((rec, index) => (
-            <div key={index} className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className={`inline-block text-3xl p-3 rounded-lg ${rec.color} mb-4`}>
-                {rec.icon}
-              </div>
-              <h3 className="text-lg font-bold text-agro-green-dark mb-2">{rec.title}</h3>
-              <p className="text-gray-600">{rec.desc}</p>
-            </div>
-          ))}
+          <div className="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <p className="text-sm text-yellow-800">
+              <strong>Nota:</strong> Integrazione meteo in sviluppo. I dati saranno disponibili a breve.
+            </p>
+          </div>
         </div>
       </div>
     </div>

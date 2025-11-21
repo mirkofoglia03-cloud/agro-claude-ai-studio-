@@ -11,14 +11,38 @@ const MyVegetablesSection: React.FC = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const categories = [
-    { value: 'tutti', label: 'Tutti', icon: '🌱' },
-    { value: 'solanacee', label: 'Solanacee', icon: '🍅' },
-    { value: 'cucurbitacee', label: 'Cucurbitacee', icon: '🥒' },
-    { value: 'brassicacee', label: 'Brassicacee', icon: '🥬' },
-    { value: 'leguminose', label: 'Leguminose', icon: '🫘' },
-    { value: 'lamiacee', label: 'Erbe Aromatiche', icon: '🌿' },
-    { value: 'cereali', label: 'Cereali', icon: '🌾' },
-    { value: 'funghi', label: 'Funghi', icon: '🍄' },
+    { value: 'tutti', label: 'Tutti' },
+    { value: 'solanacee', label: 'Solanacee' },
+    { value: 'cucurbitacee', label: 'Cucurbitacee' },
+    { value: 'brassicacee', label: 'Brassicacee' },
+    { value: 'leguminose', label: 'Leguminose' },
+    { value: 'lamiacee', label: 'Erbe Aromatiche' },
+    { value: 'cereali', label: 'Cereali' },
+    { value: 'funghi', label: 'Funghi' },
+  ];
+
+  // Quick category stats
+  const categoryStats = [
+    {
+      label: 'Ortaggi',
+      count: agricultureProducts.filter((p) => p.category === 'solanacee' || p.category === 'cucurbitacee' || p.category === 'brassicacee').length,
+      categories: ['solanacee', 'cucurbitacee', 'brassicacee'],
+    },
+    {
+      label: 'Leguminose',
+      count: agricultureProducts.filter((p) => p.category === 'leguminose').length,
+      categories: ['leguminose'],
+    },
+    {
+      label: 'Aromatiche',
+      count: agricultureProducts.filter((p) => p.category === 'lamiacee').length,
+      categories: ['lamiacee'],
+    },
+    {
+      label: 'Cereali',
+      count: agricultureProducts.filter((p) => p.category === 'cereali').length,
+      categories: ['cereali'],
+    },
   ];
 
   const filteredProducts = useMemo(() => {
@@ -45,6 +69,22 @@ const MyVegetablesSection: React.FC = (): JSX.Element => {
     setSelectedProduct(null);
   };
 
+  const handleAddToGarden = (product: AgricultureProduct, e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent modal from opening
+    // TODO: Implementare logica per aggiungere al proprio orto
+    console.log('Aggiunto al tuo orto:', product.name);
+    alert(`${product.name} aggiunto al tuo orto!`);
+  };
+
+  const handleCategoryQuickFilter = (categories: string[]) => {
+    if (categories.length === 1) {
+      setSelectedCategory(categories[0]);
+    } else {
+      // Per categorie multiple (come Ortaggi), mostra tutti e poi filtra manualmente
+      setSelectedCategory('tutti');
+    }
+  };
+
   return (
     <section id="my-vegetables" className="py-20 bg-agro-cream">
       <div className="container mx-auto px-4">
@@ -59,52 +99,75 @@ const MyVegetablesSection: React.FC = (): JSX.Element => {
           </p>
         </div>
 
-        {/* Search and Filter Bar */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
-          <div className="flex flex-col md:flex-row gap-4">
-            {/* Search Input */}
-            <div className="flex-1">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Cerca prodotti..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-agro-lime focus:outline-none transition"
+        {/* Search Bar */}
+        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+          <div className="flex-1">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Cerca pomodori, basilico, zucchine, lattuga..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-agro-lime focus:outline-none transition"
+              />
+              <svg
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                 />
-                <svg
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
+              </svg>
             </div>
+          </div>
 
-            {/* Category Filters */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <button
-                  key={category.value}
-                  onClick={() => setSelectedCategory(category.value)}
-                  className={`px-4 py-2 rounded-xl font-medium transition flex items-center gap-2 ${
-                    selectedCategory === category.value
-                      ? 'bg-agro-green text-white shadow-lg'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  <span>{category.icon}</span>
-                  <span>{category.label}</span>
-                </button>
-              ))}
-            </div>
+          {/* Helpful suggestions below search */}
+          <div className="mt-3 text-sm text-gray-500">
+            <span className="font-medium">Suggerimenti:</span> Prova a cercare per nome (es. "Pomodoro"),
+            categoria (es. "Solanacee") o stagione di semina
+          </div>
+        </div>
+
+        {/* Quick Category Stats - Now as Filter Buttons */}
+        <div className="mb-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+          {categoryStats.map((stat, index) => (
+            <button
+              key={index}
+              onClick={() => handleCategoryQuickFilter(stat.categories)}
+              className="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-xl transition transform hover:-translate-y-1 active:scale-95"
+            >
+              <div className="text-3xl font-bold text-agro-green-dark mb-1">
+                {stat.count}
+              </div>
+              <div className="text-gray-600 font-medium">{stat.label}</div>
+              <div className="mt-2 text-xs text-agro-green">
+                Clicca per filtrare
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Category Filters Bar */}
+        <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+          <div className="flex flex-wrap gap-2">
+            {categories.map((category) => (
+              <button
+                key={category.value}
+                onClick={() => setSelectedCategory(category.value)}
+                className={`px-4 py-2 rounded-xl font-medium transition ${
+                  selectedCategory === category.value
+                    ? 'bg-agro-green text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {category.label}
+              </button>
+            ))}
           </div>
 
           {/* Results Count */}
@@ -121,12 +184,17 @@ const MyVegetablesSection: React.FC = (): JSX.Element => {
                 key={product.id}
                 product={product}
                 onClick={handleProductClick}
+                onAddToGarden={handleAddToGarden}
               />
             ))}
           </div>
         ) : (
           <div className="text-center py-16">
-            <div className="text-6xl mb-4">🔍</div>
+            <div className="text-6xl mb-4">
+              <svg className="w-24 h-24 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
             <h3 className="text-2xl font-bold text-gray-700 mb-2">
               Nessun prodotto trovato
             </h3>
@@ -135,34 +203,6 @@ const MyVegetablesSection: React.FC = (): JSX.Element => {
             </p>
           </div>
         )}
-
-        {/* Quick Stats */}
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-white rounded-xl p-6 text-center shadow-md">
-            <div className="text-3xl font-bold text-agro-green-dark mb-1">
-              {agricultureProducts.filter((p) => p.category === 'solanacee' || p.category === 'cucurbitacee' || p.category === 'brassicacee').length}
-            </div>
-            <div className="text-gray-600">Ortaggi</div>
-          </div>
-          <div className="bg-white rounded-xl p-6 text-center shadow-md">
-            <div className="text-3xl font-bold text-agro-green-dark mb-1">
-              {agricultureProducts.filter((p) => p.category === 'leguminose').length}
-            </div>
-            <div className="text-gray-600">Leguminose</div>
-          </div>
-          <div className="bg-white rounded-xl p-6 text-center shadow-md">
-            <div className="text-3xl font-bold text-agro-green-dark mb-1">
-              {agricultureProducts.filter((p) => p.category === 'lamiacee').length}
-            </div>
-            <div className="text-gray-600">Aromatiche</div>
-          </div>
-          <div className="bg-white rounded-xl p-6 text-center shadow-md">
-            <div className="text-3xl font-bold text-agro-green-dark mb-1">
-              {agricultureProducts.filter((p) => p.category === 'cereali').length}
-            </div>
-            <div className="text-gray-600">Cereali</div>
-          </div>
-        </div>
       </div>
 
       {/* Product Detail Modal */}
