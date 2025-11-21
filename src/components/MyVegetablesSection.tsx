@@ -226,12 +226,6 @@ const MyVegetablesSection: React.FC = (): JSX.Element => {
               )}
             </div>
           </div>
-
-          {/* Helpful suggestions below search */}
-          <div className="mt-3 text-sm text-gray-500">
-            <span className="font-medium">Suggerimenti:</span> Prova a cercare per nome (es. "Pomodoro"),
-            categoria (es. "Solanacee") o stagione di semina
-          </div>
         </div>
 
         {/* Quick Category Stats - Now as Filter Buttons */}
