@@ -105,6 +105,7 @@ export interface AgricultureProduct {
 export interface ProductCardProps {
   product: AgricultureProduct;
   onClick?: (product: AgricultureProduct) => void;
+  onAddToGarden?: (product: AgricultureProduct, e: React.MouseEvent) => void;
 }
 
 export interface ProductFilterProps {
