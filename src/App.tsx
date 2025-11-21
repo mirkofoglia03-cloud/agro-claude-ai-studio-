@@ -12,6 +12,16 @@ import MyVegetablesPage from './pages/MyVegetablesPage';
 import CalendarPage from './pages/CalendarPage';
 import MonitoringPage from './pages/MonitoringPage';
 import GuidesPage from './pages/GuidesPage';
+import MyGardenPage from './pages/MyGardenPage';
+import ChecklistPage from './pages/ChecklistPage';
+import WeatherPage from './pages/WeatherPage';
+import HarvestsPage from './pages/HarvestsPage';
+import IncomeExpensesPage from './pages/IncomeExpensesPage';
+import DesignGardenPage from './pages/DesignGardenPage';
+import AgroGardenerPage from './pages/AgroGardenerPage';
+import CommunityPage from './pages/CommunityPage';
+import EcommercePage from './pages/EcommercePage';
+import FaqPage from './pages/FaqPage';
 
 const App: React.FC = (): JSX.Element => {
   return (
@@ -105,6 +115,136 @@ const App: React.FC = (): JSX.Element => {
                   <Header />
                   <DashboardLayout>
                     <GuidesPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/my-garden"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <MyGardenPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/checklist"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <ChecklistPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/weather"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <WeatherPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/harvests"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <HarvestsPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/income-expenses"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <IncomeExpensesPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/design-garden"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <DesignGardenPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/agro-gardener"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <AgroGardenerPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/community"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <CommunityPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ecommerce"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <EcommercePage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/faq"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <FaqPage />
                   </DashboardLayout>
                 </div>
               </ProtectedRoute>
