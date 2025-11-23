@@ -6,6 +6,7 @@ interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
+
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const location = useLocation();
