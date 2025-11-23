@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import DashboardHomePage from './pages/DashboardHomePage';
 import MyVegetablesPage from './pages/MyVegetablesPage';
+import SeedlingPage from './pages/SeedlingPage';
 import CalendarPage from './pages/CalendarPage';
 import MonitoringPage from './pages/MonitoringPage';
 import GuidesPage from './pages/GuidesPage';
@@ -76,6 +77,19 @@ const App: React.FC = (): JSX.Element => {
                   <Header />
                   <DashboardLayout>
                     <MyVegetablesPage />
+                  </DashboardLayout>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/seedling"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen">
+                  <Header />
+                  <DashboardLayout>
+                    <SeedlingPage />
                   </DashboardLayout>
                 </div>
               </ProtectedRoute>
