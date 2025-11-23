@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+interface CalendarEvent {
+  id: number;
+  title: string;
+  date: Date;
+  type: 'sowing' | 'harvest' | 'treatment' | 'irrigation';
+  color: string;
+}
 
 const CalendarPage: React.FC = (): JSX.Element => {
   const months = [
@@ -7,47 +15,174 @@ const CalendarPage: React.FC = (): JSX.Element => {
     'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'
   ];
 
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [events] = useState<CalendarEvent[]>([
+    { id: 1, title: 'Semina Pomodori', date: new Date(2025, 2, 15), type: 'sowing', color: 'bg-green-500' },
+    { id: 2, title: 'Raccolta Insalata', date: new Date(2025, 2, 20), type: 'harvest', color: 'bg-orange-500' },
+    { id: 3, title: 'Irrigazione Generale', date: new Date(2025, 2, 18), type: 'irrigation', color: 'bg-blue-500' },
+  ]);
+
+  const getDaysInMonth = (month: number, year: number) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
+
+  const getFirstDayOfMonth = (month: number, year: number) => {
+    return new Date(year, month, 1).getDay();
+  };
+
+  const renderCalendarDays = () => {
+    const daysInMonth = getDaysInMonth(currentMonth, currentYear);
+    const firstDay = getFirstDayOfMonth(currentMonth, currentYear);
+    const days = [];
+
+    // Empty cells for days before month starts
+    for (let i = 0; i < firstDay; i++) {
+      days.push(<div key={`empty-${i}`} className="p-2"></div>);
+    }
+
+    // Actual days
+    for (let day = 1; day <= daysInMonth; day++) {
+      const currentDate = new Date(currentYear, currentMonth, day);
+      const dayEvents = events.filter(
+        (event) => event.date.toDateString() === currentDate.toDateString()
+      );
+
+      days.push(
+        <div
+          key={day}
+          className="border border-gray-200 rounded-lg p-2 min-h-[80px] hover:bg-agro-cream transition cursor-pointer"
+        >
+          <div className="font-semibold text-sm text-gray-700 mb-1">{day}</div>
+          <div className="space-y-1">
+            {dayEvents.map((event) => (
+              <div
+                key={event.id}
+                className={`text-xs ${event.color} text-white px-2 py-1 rounded`}
+              >
+                {event.title.substring(0, 10)}...
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    return days;
+  };
+
+  const previousMonth = () => {
+    if (currentMonth === 0) {
+      setCurrentMonth(11);
+      setCurrentYear(currentYear - 1);
+    } else {
+      setCurrentMonth(currentMonth - 1);
+    }
+  };
+
+  const nextMonth = () => {
+    if (currentMonth === 11) {
+      setCurrentMonth(0);
+      setCurrentYear(currentYear + 1);
+    } else {
+      setCurrentMonth(currentMonth + 1);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-agro-cream pt-6 pb-16">
       <div className="container mx-auto px-4">
         {/* Page Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h1 className="text-5xl font-extrabold text-agro-green-dark mb-4">
-            Calendario di Semina
+            Calendario Agricolo
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Pianifica le tue semine in base al microclima della tua zona
+            Pianifica e monitora tutte le attività del tuo orto
           </p>
         </div>
 
-        {/* Calendar Preview */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+        {/* Month View Calendar */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6">
           <div className="flex items-center justify-between mb-6">
-            <button className="p-2 hover:bg-gray-100 rounded-lg transition">
+            <button onClick={previousMonth} className="p-2 hover:bg-gray-100 rounded-lg transition">
               <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            <h2 className="text-2xl font-bold text-agro-green-dark">Anno 2025</h2>
-            <button className="p-2 hover:bg-gray-100 rounded-lg transition">
+            <h2 className="text-2xl font-bold text-agro-green-dark">
+              {months[currentMonth]} {currentYear}
+            </h2>
+            <button onClick={nextMonth} className="p-2 hover:bg-gray-100 rounded-lg transition">
               <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
 
+          {/* Add Event Button */}
+          <div className="mb-6">
+            <button
+              onClick={() => console.log('Aggiungi attività - funzione da implementare')}
+              className="w-full md:w-auto px-6 py-3 bg-gradient-to-r from-agro-green to-agro-lime text-white font-bold rounded-xl hover:shadow-lg transition"
+            >
+              + Aggiungi Attività
+            </button>
+          </div>
+
+          {/* Calendar Grid */}
+          <div className="mb-4">
+            <div className="grid grid-cols-7 gap-2 mb-2">
+              {['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'].map((day) => (
+                <div key={day} className="text-center font-bold text-gray-600 text-sm">
+                  {day}
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-cols-7 gap-2">
+              {renderCalendarDays()}
+            </div>
+          </div>
+
+          {/* Legend */}
+          <div className="flex flex-wrap gap-4 mt-6 pt-6 border-t border-gray-200">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-green-500 rounded"></div>
+              <span className="text-sm text-gray-600">Semina</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-orange-500 rounded"></div>
+              <span className="text-sm text-gray-600">Raccolta</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-purple-500 rounded"></div>
+              <span className="text-sm text-gray-600">Trattamento</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-blue-500 rounded"></div>
+              <span className="text-sm text-gray-600">Irrigazione</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Year Overview */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+          <h2 className="text-2xl font-bold text-agro-green-dark mb-6">Panoramica Annuale</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {months.map((month) => (
-              <div
+            {months.map((month, index) => (
+              <button
                 key={month}
-                className="border-2 border-gray-200 rounded-xl p-4 hover:border-agro-lime hover:shadow-md transition cursor-pointer"
+                onClick={() => setCurrentMonth(index)}
+                className={`border-2 rounded-xl p-4 hover:border-agro-lime hover:shadow-md transition ${
+                  index === currentMonth ? 'border-agro-green bg-agro-green/5' : 'border-gray-200'
+                }`}
               >
                 <h3 className="font-bold text-agro-green-dark mb-2">{month}</h3>
                 <div className="text-sm text-gray-500">
-                  <p className="mb-1">Semine: --</p>
-                  <p>Raccolti: --</p>
+                  <p className="mb-1">Semine: {events.filter(e => e.date.getMonth() === index && e.type === 'sowing').length}</p>
+                  <p>Raccolti: {events.filter(e => e.date.getMonth() === index && e.type === 'harvest').length}</p>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
