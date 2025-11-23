@@ -279,6 +279,16 @@ const MyGardenPage: React.FC = () => {
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Azioni Rapide</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <Link
+              to="/seedling"
+              className="flex items-center gap-2 p-3 bg-white rounded-lg hover:shadow-md transition"
+            >
+              <svg className="w-5 h-5 text-agro-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              <span className="text-sm font-medium text-gray-700">Gestisci Semenzaio</span>
+            </Link>
+
+            <Link
               to="/my-vegetables"
               className="flex items-center gap-2 p-3 bg-white rounded-lg hover:shadow-md transition"
             >
@@ -306,16 +316,6 @@ const MyGardenPage: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
               </svg>
               <span className="text-sm font-medium text-gray-700">Registra Raccolto</span>
-            </Link>
-
-            <Link
-              to="/weather"
-              className="flex items-center gap-2 p-3 bg-white rounded-lg hover:shadow-md transition"
-            >
-              <svg className="w-5 h-5 text-agro-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-              </svg>
-              <span className="text-sm font-medium text-gray-700">Controlla Meteo</span>
             </Link>
           </div>
         </div>
