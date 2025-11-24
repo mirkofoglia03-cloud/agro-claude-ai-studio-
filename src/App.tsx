@@ -23,6 +23,7 @@ import AgroGardenerPage from './pages/AgroGardenerPage';
 import CommunityPage from './pages/CommunityPage';
 import EcommercePage from './pages/EcommercePage';
 import FaqPage from './pages/FaqPage';
+import AgentDemo from './pages/AgentDemo';
 
 const App: React.FC = (): JSX.Element => {
   return (
@@ -261,6 +262,14 @@ const App: React.FC = (): JSX.Element => {
                     <FaqPage />
                   </DashboardLayout>
                 </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/agents"
+            element={
+              <ProtectedRoute>
+                <AgentDemo />
               </ProtectedRoute>
             }
           />
