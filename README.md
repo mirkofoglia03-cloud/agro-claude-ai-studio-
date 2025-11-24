@@ -12,9 +12,14 @@ View your app in AI Studio: https://ai.studio/apps/drive/1WdzyC-G0loEhkyzQ7RZEzA
 
 **Prerequisites:**  Node.js
 
-
 1. Install dependencies:
    `npm install`
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## VS Code Setup
+
+**📘 Per una guida dettagliata in italiano su come aprire il progetto in VS Code, consulta [VSCODE_SETUP.md](VSCODE_SETUP.md)**
+
+For detailed VS Code setup instructions in Italian, see [VSCODE_SETUP.md](VSCODE_SETUP.md)
